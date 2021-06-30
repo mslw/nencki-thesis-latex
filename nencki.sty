@@ -1,0 +1,82 @@
+%%%% file nencki.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{nencki}[2021/06/11 v0.1 Nencki thesis]
+
+\RequirePackage{graphicx}
+
+%% Only works with the memoir class
+%% (not sure if it really relies on memoir, but I didn't test without)
+\@ifclassloaded{memoir}{\let\endnencki\relax}{\let\endnencki\endinput
+  \PackageError{nencki}{The nencki package only works with the memoir class}%
+  {\@ehd}}
+\endnencki
+
+\newcommand{\settitle}[1]{\def\nenckititle{#1}}
+\newcommand{\setauthor}[1]{\def\nenckiauthor{#1}}
+\newcommand{\setlabname}[1]{\def\nenckilabname{#1}}
+\newcommand{\setsupervisor}[1]{\def\nenckisupervisor{#1}}
+\newcommand{\setcosupervisor}[1]{\def\nenckicosupervisor{#1}}
+\newcommand{\setauxsupervisor}[1]{\def\nenckiauxsupervisor{#1}}
+\newcommand{\setyear}[1]{\def\nenckiyear{#1}}
+\newcommand{\setlogo}[1]{\def\nenckilogo{#1}}
+
+\newcommand{\thetitlepage}{{%
+    \clearpage
+    \thispagestyle{empty}
+
+    \ifdefined\nenckilogo
+    \begin{minipage}[t]{\textwidth}
+      \centering
+      \includegraphics[height=3.25cm]{\nenckilogo}
+      % might need to run convert -alpha remove logo.png newlogo.png
+    \end{minipage}
+    \vfill
+    \fi
+    
+    \begin{minipage}[t]{\textwidth}
+      \LARGE\bfseries
+      \centering
+      \nenckiauthor\\
+      \vspace{\baselineskip}
+      \nenckititle
+      % \end{center}
+    \end{minipage}
+      
+    \vfill
+
+    \hfill
+    \begin{minipage}[t]{0.625\textwidth}
+      Phd thesis \\
+      Completed in the \nenckilabname \\
+      of the Nencki Institute of Experimental Biology \\
+      Polish Academy of Sciences
+    \end{minipage}
+
+    \vfill
+
+    \hfill
+    \begin{minipage}[t]{0.625\textwidth}
+      \Large \bfseries
+      % supervisor
+      SUPERVISOR: \newline
+      \nenckisupervisor
+      % co-supervisor, if present
+      \ifdefined\nenckicosupervisor
+      \newline CO-SUPERVISOR: \newline \nenckicosupervisor
+      \fi
+      % auxillary supervisor, if present
+      \ifdefined\nenckiauxsupervisor
+      \newline AUXILLARY SUPERVISOR: \newline \nenckiauxsupervisor
+      \fi
+    \end{minipage}
+
+    \vfill
+
+    \begin{center}
+      Warsaw, \nenckiyear
+    \end{center}
+
+    % \vfill
+
+    \clearpage
+  }}
