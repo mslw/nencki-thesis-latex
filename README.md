@@ -1,7 +1,7 @@
 # LaTeX style for Nencki Institute thesis
 
-An official title page for a thesis written at the Nencki Institute is provided only in the doc format.
-This is my attempt to produce an almost identical layout in 
+The official title page for a thesis written at the Nencki Institute is available only in the doc format.
+This is my attempt to produce an almost identical layout in LaTeX.
 It can be edited further, but hopefully this is good as-is and will save your time.
 Currently, the style defines only the title page.
 The repository contains the file which I have been using to typeset my own thesis.
